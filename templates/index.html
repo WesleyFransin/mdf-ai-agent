@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title> GenAI Demo</title>
+
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/chat.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/sidebar.css') }}">
+    </header>
+    
+    
+    <body>
+        <div class="sidebar">
+            <button class="sidebar-item" onclick=handleSidebarNavigation(event)> Chat </button>
+            <button class="sidebar-item" onclick=handleSidebarNavigation(event)> Variables </button>
+            
+        </div>
+        <div class="chat-container">
+            <div class="chat-history" id="history">
+                
+            </div>
+            <div class="input-area">
+                <textarea class="text-input"
+                name="prompt-input" 
+                id="prompt-input" 
+                placeholder="Write you message here..."
+                autofocus
+                onkeydown='return preventNewLine(event)'></textarea>
+                <button class="send-button"
+                    onclick=handleSendButton()>
+                    Send
+                </button>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="{{ url_for('static',filename='scripts/chatController.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='scripts/utils.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='scripts/sidebar.js') }}"></script>
+</html>

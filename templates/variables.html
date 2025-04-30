@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title> GenAI Demo</title>
+
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/sidebar.css') }}">
+        
+    </header>
+    
+    
+    <body>
+        <div class="sidebar">
+            <button class="sidebar-item" onclick=handleSidebarNavigation(event)> Chat </button>
+            <button class="sidebar-item" onclick=handleSidebarNavigation(event)> Variables </button>
+        </div>
+        <h1>Under construction</h1>
+    </body>
+    <script type="text/javascript" src="{{ url_for('static',filename='scripts/chatController.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='scripts/sidebar.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='scripts/utils.js') }}"></script>
+</html>
