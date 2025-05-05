@@ -5,7 +5,8 @@
 
         <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}">
         <link rel="stylesheet" href="{{ url_for('static',filename='styles/sidebar.css') }}">
-        
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/variables.css') }}">
+   
     </header>
     
     
@@ -14,9 +15,29 @@
             <button class="sidebar-item" onclick=handleSidebarNavigation(event)> Chat </button>
             <button class="sidebar-item" onclick=handleSidebarNavigation(event)> Variables </button>
         </div>
-        <h1>Under construction</h1>
+        <div class="search-container">
+            <div class="search-inputs">
+                <input type="text"
+                        name="search-term"
+                        id="search-term"
+                        class="variable-search-bar"
+                        placeholder="Search description...">
+                <button class="search-button" onclick=searchVariable(event)>Search</button>
+            </div>
+            <div class="table-container" id="results-container">
+                <table class="variables-table" id='results'>
+                    <tr class="variables-table-header-row">
+                      <th class="variables-table-header-cell">Variable Name</th>
+                      <th class="variables-table-header-cell">Variable Description</th>
+                    </tr>
+                </table>
+                <div class="search-placeholder">
+                    No results found
+                </div>
+            </div>
+        </div>
     </body>
-    <script type="text/javascript" src="{{ url_for('static',filename='scripts/chatController.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='scripts/sidebar.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='scripts/utils.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='scripts/searchVariable.js') }}"></script>
 </html>

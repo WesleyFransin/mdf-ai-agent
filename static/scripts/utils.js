@@ -1,4 +1,4 @@
 function preventNewLine(e){
-    if(e.keyCode == 13) return false;
+    if(e.key === 'Enter') return false;
     return true;
 }

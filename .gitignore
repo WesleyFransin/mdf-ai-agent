@@ -1,3 +1,5 @@
 # Local directories
 
 __pycache__
+notebook
+variables_db
