@@ -56,6 +56,8 @@
 .system-message{
     background-color: #eef3f6;
     justify-self: flex-start;
+    display: flex;
+    flex-direction: column;
 }
 
 .loading{
@@ -88,4 +90,8 @@
 
 .send-button:active{
     background-color: #0e7bbb;
+}
+
+.attached-image{
+    border-radius: 10px;
 }

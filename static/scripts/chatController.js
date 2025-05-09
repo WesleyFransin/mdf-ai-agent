@@ -28,11 +28,31 @@ const sendChat = (promptMessage) => {
             message: promptMessage
         }),
     })
-    .then((r) => r.json())
     .then((r) => {
+        console.log(r.headers.get('Content-Type'))
+        if(r.headers.get('Content-Type') !== 'application/json')
+            return r.blob()
+        return r.json()
+    })
+    .then((r) => {
+        console.log(r)
+        
         newResponse.className = 'message system-message';
-        newResponse.innerText = r.response;
-        // messageHistory.appendChild(newResponse);
+        // Image 
+        if(r.type === 'image/png'){
+            const blobUrl = URL.createObjectURL(r);
+            const img = document.createElement('img');
+            img.className = 'attached-image'
+            img.src = blobUrl;
+            newResponse.innerText = 'Here is the plot';
+            newResponse.appendChild(img)
+            r.response = 'A figure containing the requested information'
+        }
+        else{
+            newResponse.innerText = r.response;
+        }
+
+        messageHistory.appendChild(newResponse);
         messageHistory.scrollTo(0, messageHistory.scrollHeight);
         chatHistory.push('<Human>: ' + promptMessage);
         chatHistory.push('<Assistant>: ' + r.response);

@@ -1,10 +1,21 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from llm import LanguageModel
 from variable_store import VariableStore
 
+
+import mdfreader as mr
+
 app = Flask('backend')
-llm_model = LanguageModel(model='gemma3:12b')
+llm_model = LanguageModel(model='qwen3:14b')
 variables_store = VariableStore()
+
+file = mr.Mdf(r"", no_data_loading=True)
+llm_model.set_file(file)
+llm_model.set_variables_store(variables_store)
+
+'''
+Please, plot me three different figures. The first one should contain ambient temperature. The second, IBS3_SOC and battery voltage at the terminals. The third, rpm and speed
+'''
 
 @app.route("/")
 def home():
@@ -15,7 +26,11 @@ def chat():
     data = request.json
     chat_history = '\n'.join(data['history'])
     response = llm_model.generate_answer(data['message'], chat_history)
-    return {'response': response}
+
+    if(isinstance(response, str)):
+        return {'response': response}
+        
+    return send_file(response, mimetype='image/png')
 
 @app.route('/variables')
 def variables():
